@@ -18,23 +18,23 @@ object Task2aFunctions extends App:
     case x if x >= 0 => "positive"
     case _ => "negative"
 
-  println(sign(4))
-  println(sign(0))
-  println(sign(-4))
+  println(sign(4))  // positive
+  println(sign(0))  // positive
+  println(sign(-4)) // negative
 
-  println(sign2(4))
-  println(sign2(0))
-  println(sign2(-4))
+  println(sign2(4))  // positive
+  println(sign2(0))  // positive
+  println(sign2(-4)) // negative
 
   // ============= Step b =============
   def neg(f: String => Boolean): String => Boolean =
     (x: String) => !f(x)
 
-  val empty: String => Boolean = _ == "" // predicate on strings
-  val notEmpty = neg(empty) // which type of notEmpty?
-  println(notEmpty("foo")) // true
-  println(notEmpty("")) // false
-  println(notEmpty("foo") && !notEmpty("")) // true.. a comprehensive test
+  val empty: String => Boolean = _ == ""
+  val notEmpty = neg(empty)
+  println(notEmpty("foo"))                   // true
+  println(notEmpty(""))                      // false
+  println(notEmpty("foo") && !notEmpty(""))  // true
 
   // ============= Step c =============
   def neg2[X](f: X => Boolean): X => Boolean =
@@ -43,8 +43,8 @@ object Task2aFunctions extends App:
   val geZero: Integer => Boolean = _ >= 0
   var lessZero = neg2(geZero)
 
-  println(geZero(2)) // true
-  println(lessZero(2)) // false
+  println(geZero(2))                 // true
+  println(lessZero(2))               // false
   println(geZero(2) && !lessZero(2)) // true
 
 
@@ -57,30 +57,30 @@ object Task2bFunctions extends App:
   def p2(x: Double, y: Double, z: Double): Boolean =
     x <= y && y == z
 
-  println(p1(1, 2, 2))
-  println(p2(1, 2, 2))
+  println(p1(1, 2, 2)) // true
+  println(p2(1, 2, 2)) // true
 
   // Currying
   def p3(x: Double)(y: Double)(z: Double): Boolean =
     x <= y && y == z
 
-  println(p3(2)(3)(3))
+  println(p3(2)(3)(3)) // true
 
   var p4: Double => Double => Double => Boolean = x => y => z => x <= y && y == z
 
-  println(p4(2)(3)(3))
+  println(p4(2)(3)(3)) // true
 
 
   // ============= Step 5. Composition of functions =============
   def compose(f: Int => Int, g: Int => Int): Int => Int =
     x => f(g(x))
 
-  println(compose(_ - 1, _ * 2)(5))
+  println(compose(_ - 1, _ * 2)(5)) // 9
 
   def compose2[X, Y, Z](f: Y => Z, g: X => Y): X => Z =
     x => f(g(x))
 
-  println(compose2((x: Int) => x + ", doubled", (y: Int) => y * 2)(5))
+  println(compose2((x: Int) => x + ", doubled", (y: Int) => y * 2)(5)) // 10, doubled
 
 
 object Task3Recursion extends App:
@@ -95,8 +95,8 @@ object Task3Recursion extends App:
     case (a, b) if a < b => gcd(a, b - a)
     case _ => a
 
-  println(gcd(24, 16))
-  println(gcdOpt(24, 16))
+  println(gcd(24, 16))            // 8
+  println(gcdOpt(24, 16))    // 8
 
 object Task4Shapes extends App:
   enum Shape:
@@ -125,7 +125,7 @@ object Task4Shapes extends App:
 
   import Shape.*
 
-  // Created via TDD. See file Task4Tests
+  // Created via TDD. See file Task4Tests.
 
 object Task5Optionals extends App:
   object Option:
